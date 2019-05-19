@@ -24,7 +24,14 @@ CXChildVisitResult visitor(CXCursor cursor, CXCursor, CXClientData) {
   CXCursor parent = clang_getCursorLexicalParent(cursor);
   std::string parent_name_str = Convert(clang_getCursorDisplayName(parent));
 
-  std::cout<< cursor_spelling_str <<"--------" << cursor_kind_str<<" >>>>>> " << parent_name_str << cursor_type_str << std::endl;
+  //std::cout<< cursor_spelling_str <<"--------" << cursor_kind_str<<" >>>>>> " << parent_name_str << cursor_type_str << std::endl;
+  if(cursor_kind_str == "EnumDecl"){
+    std::cout << "EnumDecl" << "   " << cursor_spelling_str << '\n';
+  }
+
+  else if(cursor_kind_str == "EnumConstantDecl"){
+    std::cout << "   " << "EnumConstantDecl" << "   " << cursor_spelling_str << " --- parent = " << parent_name_str << '\n';
+  }
   return CXChildVisit_Recurse;
 }
 
