@@ -1,8 +1,7 @@
 #include <clang-c/Index.h>
 #include <iostream>
 
-std::string convert(const CXString& s)
-{
+std::string convert(const CXString& s){
    std::string result = clang_getCString(s);
    clang_disposeString(s);
    return result;
